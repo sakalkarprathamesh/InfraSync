@@ -28,12 +28,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         try {
           const profile = await api.getMe();
           setUser(profile);
+          setIsLoading(false);
+          return;
         } catch (err) {
           console.error("Failed to load user profile", err);
           localStorage.removeItem('infrasync_token');
           setToken(null);
           setUser(null);
         }
+      }
+      try {
+        const demos = await api.getDemoUsers();
+        if (demos.length > 0) {
+          const defaultAdmin = demos.find((d) => d.role === 'admin') || demos[0];
+          const res = await api.login({ email: defaultAdmin.email, password: defaultAdmin.demo_password });
+          localStorage.setItem('infrasync_token', res.access_token);
+          setToken(res.access_token);
+          setUser(res.user);
+        }
+      } catch (err) {
+        console.error("Auto demo login initialization fallback", err);
       }
       setIsLoading(false);
     }

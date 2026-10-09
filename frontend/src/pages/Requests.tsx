@@ -86,19 +86,19 @@ export const Requests: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header & New Request button */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#DADCE0]">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-black text-[#202124] tracking-tight">
             Excavation Requests
           </h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <p className="text-xs sm:text-sm text-[#5F6368] mt-0.5">
             Registry of all planned, submitted, approved, and active road excavation activities.
           </p>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center gap-2.5">
           <button
             onClick={fetchRequests}
-            className="p-2 text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm"
+            className="p-2.5 text-[#5F6368] bg-white border border-[#DADCE0] rounded-2xl hover:bg-[#F8F9FA] hover:text-[#202124] transition-colors shadow-xs cursor-pointer"
             title="Refresh requests"
           >
             <RefreshCw className="w-4 h-4" />
@@ -106,7 +106,7 @@ export const Requests: React.FC = () => {
           {isDepartmentUser && (
             <Link
               to="/requests/new"
-              className="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 shadow-sm transition-all"
+              className="inline-flex items-center px-4 py-2.5 text-xs font-bold text-white bg-[#1A73E8] hover:bg-[#1557B0] rounded-2xl shadow-xs transition-all cursor-pointer"
             >
               <PlusCircle className="w-4 h-4 mr-1.5" />
               Submit Request
@@ -115,37 +115,37 @@ export const Requests: React.FC = () => {
         </div>
       </div>
 
-      {/* Filter Toolbar */}
-      <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-3">
-        <form onSubmit={handleSearchSubmit} className="flex gap-2">
+      {/* Filter Toolbar matching Roomie rounded style */}
+      <div className="p-4 sm:p-5 bg-white rounded-2xl border border-[#DADCE0] shadow-xs space-y-3">
+        <form onSubmit={handleSearchSubmit} className="flex gap-2.5">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3.5 top-3 w-4 h-4 text-[#5F6368]" />
             <input
               type="text"
-              placeholder="Search by request code, title, locality, or road name..."
+              placeholder="Search by request code, title, locality, or road corridor..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2.5 text-xs bg-[#F8F9FA] border border-[#DADCE0] rounded-2xl text-[#202124] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1A73E8]/20 focus:border-[#1A73E8] transition-all"
             />
           </div>
           <button
             type="submit"
-            className="px-4 py-2 text-xs font-semibold text-white bg-slate-800 rounded-lg hover:bg-slate-900 transition-colors"
+            className="px-5 py-2.5 text-xs font-bold text-white bg-[#202124] hover:bg-[#3C4043] rounded-2xl transition-colors shadow-xs cursor-pointer"
           >
             Search
           </button>
         </form>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 border-t border-slate-100 text-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-[#DADCE0]/60 text-xs">
           {/* Department Filter */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-500 mb-1">
+            <label className="block text-[11px] font-bold text-[#5F6368] mb-1">
               Department
             </label>
             <select
               value={selectedDept}
               onChange={(e) => setSelectedDept(e.target.value)}
-              className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs focus:ring-1 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border border-[#DADCE0] rounded-2xl text-[#202124] text-xs font-medium focus:ring-2 focus:ring-[#1A73E8]/20 focus:border-[#1A73E8]"
             >
               <option value="All">All Departments</option>
               {departments.map((d) => (
@@ -158,13 +158,13 @@ export const Requests: React.FC = () => {
 
           {/* Status Filter */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-500 mb-1">
+            <label className="block text-[11px] font-bold text-[#5F6368] mb-1">
               Status
             </label>
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs focus:ring-1 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border border-[#DADCE0] rounded-2xl text-[#202124] text-xs font-medium focus:ring-2 focus:ring-[#1A73E8]/20 focus:border-[#1A73E8]"
             >
               <option value="All">All Statuses</option>
               <option value="Draft">Draft</option>
@@ -183,13 +183,13 @@ export const Requests: React.FC = () => {
 
           {/* Priority Filter */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-500 mb-1">
+            <label className="block text-[11px] font-bold text-[#5F6368] mb-1">
               Priority
             </label>
             <select
               value={selectedPriority}
               onChange={(e) => setSelectedPriority(e.target.value)}
-              className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs focus:ring-1 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border border-[#DADCE0] rounded-2xl text-[#202124] text-xs font-medium focus:ring-2 focus:ring-[#1A73E8]/20 focus:border-[#1A73E8]"
             >
               <option value="All">All Priorities</option>
               <option value="Emergency">Emergency</option>
@@ -201,13 +201,13 @@ export const Requests: React.FC = () => {
 
           {/* Work Type Filter */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-500 mb-1">
+            <label className="block text-[11px] font-bold text-[#5F6368] mb-1">
               Work Type
             </label>
             <select
               value={selectedWorkType}
               onChange={(e) => setSelectedWorkType(e.target.value)}
-              className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs focus:ring-1 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border border-[#DADCE0] rounded-2xl text-[#202124] text-xs font-medium focus:ring-2 focus:ring-[#1A73E8]/20 focus:border-[#1A73E8]"
             >
               <option value="All">All Work Types</option>
               <option value="Water Pipeline">Water Pipeline</option>
@@ -223,18 +223,18 @@ export const Requests: React.FC = () => {
       </div>
 
       {/* Requests Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-[#DADCE0] shadow-xs overflow-hidden">
         {loading ? (
           <div className="py-12 flex justify-center items-center">
-            <div className="w-7 h-7 border-3 border-blue-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-3 border-[#1A73E8] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : requests.length === 0 ? (
-          <div className="py-16 text-center text-slate-500 text-xs">
-            <p className="font-semibold text-slate-700 text-sm">No excavation requests found</p>
-            <p className="mt-1">Try adjusting your filters or search keywords.</p>
+          <div className="py-16 text-center text-[#5F6368] text-xs space-y-2">
+            <p className="font-bold text-[#202124] text-sm">No excavation requests found</p>
+            <p>Try adjusting your filters or search keywords.</p>
             <button
               onClick={handleResetFilters}
-              className="mt-3 px-3.5 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-medium hover:bg-slate-200"
+              className="mt-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-[#202124] rounded-2xl font-bold transition-colors cursor-pointer"
             >
               Reset Filters
             </button>
@@ -242,82 +242,82 @@ export const Requests: React.FC = () => {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold uppercase tracking-wider text-[11px]">
+              <thead className="bg-[#F8F9FA] border-b border-[#DADCE0] text-[#5F6368] font-bold uppercase tracking-wider text-[11px]">
                 <tr>
-                  <th className="py-3 px-4">Code</th>
-                  <th className="py-3 px-4">Project Title</th>
-                  <th className="py-3 px-4">Department</th>
-                  <th className="py-3 px-4">Road & Locality</th>
-                  <th className="py-3 px-4">Dates</th>
-                  <th className="py-3 px-4">Length</th>
-                  <th className="py-3 px-4">Priority</th>
-                  <th className="py-3 px-4">Status</th>
-                  <th className="py-3 px-4 text-right">Action</th>
+                  <th className="py-3.5 px-4">Code</th>
+                  <th className="py-3.5 px-4">Project Title</th>
+                  <th className="py-3.5 px-4">Department</th>
+                  <th className="py-3.5 px-4">Road &amp; Locality</th>
+                  <th className="py-3.5 px-4">Dates</th>
+                  <th className="py-3.5 px-4">Length</th>
+                  <th className="py-3.5 px-4">Priority</th>
+                  <th className="py-3.5 px-4">Status</th>
+                  <th className="py-3.5 px-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-[#DADCE0]/50">
                 {requests.map((r) => (
                   <tr
                     key={r.id}
                     onClick={() => navigate(`/requests/${r.id}`)}
-                    className="hover:bg-blue-50/40 cursor-pointer transition-colors"
+                    className="hover:bg-[#E8F0FE]/30 cursor-pointer transition-colors"
                   >
-                    <td className="py-3 px-4 font-bold text-blue-600 whitespace-nowrap">
+                    <td className="py-3 px-4 font-bold text-[#1A73E8] whitespace-nowrap">
                       {r.request_code}
                       {(r.active_conflicts_count ?? 0) > 0 && (
                         <span
-                          className="ml-1.5 inline-flex items-center text-[10px] font-bold text-red-600 bg-red-50 border border-red-200 rounded px-1.5 py-0.2"
+                          className="ml-1.5 inline-flex items-center text-[10px] font-bold text-[#EA4335] bg-[#FCE8E6] border border-[#F28B82] rounded-full px-2 py-0.2"
                           title="Active conflict detected with this project"
                         >
-                          <AlertTriangle className="w-3 h-3 mr-0.5 text-red-500" />
+                          <AlertTriangle className="w-3 h-3 mr-0.5 text-[#EA4335]" />
                           {r.active_conflicts_count}
                         </span>
                       )}
                     </td>
-                    <td className="py-3 px-4 font-medium text-slate-900 max-w-xs truncate">
+                    <td className="py-3 px-4 font-bold text-[#202124] max-w-xs truncate">
                       {r.title}
-                      <span className="block text-[11px] text-slate-500 truncate font-normal">
+                      <span className="block text-[11px] text-[#5F6368] truncate font-normal">
                         {r.work_type}
                       </span>
                     </td>
                     <td className="py-3 px-4 whitespace-nowrap">
-                      <span className="flex items-center space-x-1.5 font-medium text-slate-800">
+                      <span className="flex items-center space-x-1.5 font-bold text-[#202124]">
                         <span
                           className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: r.department_color || '#2563EB' }}
+                          style={{ backgroundColor: r.department_color || '#1A73E8' }}
                         />
                         <span className="truncate max-w-[130px]">
                           {r.department_name.replace(' Department', '')}
                         </span>
                       </span>
                     </td>
-                    <td className="py-3 px-4 whitespace-nowrap text-slate-700">
-                      <p className="font-medium text-slate-800">{r.road_name}</p>
-                      <p className="text-[11px] text-slate-400">{r.locality}</p>
+                    <td className="py-3 px-4 whitespace-nowrap text-[#202124]">
+                      <p className="font-bold text-[#202124]">{r.road_name}</p>
+                      <p className="text-[11px] text-[#5F6368]">{r.locality}</p>
                     </td>
-                    <td className="py-3 px-4 whitespace-nowrap text-slate-600">
-                      <span>
+                    <td className="py-3 px-4 whitespace-nowrap text-[#5F6368]">
+                      <span className="font-medium text-[#202124]">
                         {new Date(r.proposed_start_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
                       </span>
                       <span className="text-slate-400"> to </span>
-                      <span>
+                      <span className="font-medium text-[#202124]">
                         {new Date(r.proposed_end_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
                       </span>
-                      <span className="block text-[10px] text-slate-400">({r.expected_duration_days} days)</span>
+                      <span className="block text-[10px] text-[#5F6368]">({r.expected_duration_days} days)</span>
                     </td>
-                    <td className="py-3 px-4 whitespace-nowrap text-slate-600 font-mono">
+                    <td className="py-3 px-4 whitespace-nowrap text-[#202124] font-semibold">
                       {r.excavation_length_meters}m
                     </td>
                     <td className="py-3 px-4 whitespace-nowrap">
                       <span
-                        className={`px-2 py-0.5 rounded font-bold text-[10px] uppercase ${
+                        className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] uppercase ${
                           r.priority === 'Emergency'
-                            ? 'bg-red-100 text-red-700 border border-red-200'
+                            ? 'bg-[#FCE8E6] text-[#EA4335]'
                             : r.priority === 'High'
-                            ? 'bg-amber-100 text-amber-800'
+                            ? 'bg-[#FEF7E0] text-[#7A4B04]'
                             : r.priority === 'Medium'
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'bg-slate-100 text-slate-700'
+                            ? 'bg-[#E8F0FE] text-[#1A73E8]'
+                            : 'bg-slate-100 text-[#5F6368]'
                         }`}
                       >
                         {r.priority}
@@ -325,27 +325,27 @@ export const Requests: React.FC = () => {
                     </td>
                     <td className="py-3 px-4 whitespace-nowrap">
                       <span
-                        className={`px-2 py-0.5 rounded font-semibold text-[10px] ${
+                        className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] ${
                           r.status === 'Approved'
-                            ? 'bg-emerald-100 text-emerald-800'
+                            ? 'bg-[#E6F4EA] text-[#137333] border border-[#CEEAD6]'
                             : r.status === 'Submitted'
-                            ? 'bg-blue-100 text-blue-800'
+                            ? 'bg-[#E8F0FE] text-[#1A73E8] border border-[#DADCE0]'
                             : r.status === 'Scheduled'
-                            ? 'bg-indigo-100 text-indigo-800'
+                            ? 'bg-[#E8F0FE] text-[#1A73E8]'
                             : r.status === 'In Progress'
-                            ? 'bg-amber-100 text-amber-800'
+                            ? 'bg-[#FEF7E0] text-[#7A4B04]'
                             : r.status === 'Restoration Verified'
-                            ? 'bg-teal-100 text-teal-800'
+                            ? 'bg-[#E6F4EA] text-[#137333]'
                             : r.status === 'Restoration Pending'
-                            ? 'bg-purple-100 text-purple-800'
-                            : 'bg-slate-100 text-slate-700'
+                            ? 'bg-[#FEF7E0] text-[#7A4B04]'
+                            : 'bg-slate-100 text-[#5F6368]'
                         }`}
                       >
                         {r.status}
                       </span>
                     </td>
                     <td className="py-3 px-4 text-right whitespace-nowrap">
-                      <span className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800">
+                      <span className="inline-flex items-center text-[#1A73E8] font-bold hover:underline">
                         View <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
                       </span>
                     </td>

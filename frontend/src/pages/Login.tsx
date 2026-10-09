@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   ShieldCheck,
   Building2,
@@ -7,7 +7,9 @@ import {
   Mail,
   Sparkles,
   ArrowRight,
-  AlertCircle
+  AlertCircle,
+  Home,
+  CheckCircle2
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../api/client';
@@ -41,7 +43,7 @@ export const Login: React.FC = () => {
     try {
       setLoading(true);
       await login(email, password);
-      navigate('/');
+      navigate('/overview');
     } catch (err: any) {
       setError(err.message || 'Invalid credentials.');
     } finally {
@@ -54,7 +56,7 @@ export const Login: React.FC = () => {
     try {
       setLoading(true);
       await switchDemoUser(du);
-      navigate('/');
+      navigate('/overview');
     } catch (err: any) {
       setError(err.message || 'Failed demo login');
     } finally {
@@ -63,40 +65,65 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-2">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white font-black text-xl shadow-lg shadow-blue-500/30">
-          IN
+    <div className="min-h-screen bg-[#F8F9FA] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3">
+        {/* Roomie-Style Brand Logo */}
+        <Link to="/" className="inline-flex items-center gap-2 group">
+          <div className="w-11 h-11 rounded-2xl bg-[#1A73E8] text-white flex items-center justify-center font-black text-lg shadow-xs group-hover:scale-105 transition-transform">
+            I
+          </div>
+          <div className="flex flex-col text-left">
+            <div className="font-black text-2xl tracking-tight leading-none">
+              <span className="text-[#1A73E8]">I</span>
+              <span className="text-[#EA4335]">n</span>
+              <span className="text-[#FBBC04]">f</span>
+              <span className="text-[#1A73E8]">r</span>
+              <span className="text-[#34A853]">a</span>
+              <span className="text-[#EA4335]">s</span>
+              <span className="text-[#1A73E8]">y</span>
+              <span className="text-[#34A853]">n</span>
+              <span className="text-[#FBBC04]">c</span>
+            </div>
+            <span className="text-[11px] font-bold text-[#5F6368] tracking-wider uppercase mt-0.5">
+              Pune Municipal GIS Portal
+            </span>
+          </div>
+        </Link>
+
+        <div>
+          <h1 className="text-xl sm:text-2xl font-black text-[#202124] tracking-tight">
+            Sign in to Your Department
+          </h1>
+          <p className="text-xs text-[#5F6368] mt-1">
+            Access inter-agency excavation plans, conflict detection, and GIS coordination.
+          </p>
         </div>
-        <h1 className="text-2xl font-black text-white tracking-tight">
-          INFRASYNC
-        </h1>
-        <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
-          AI-Powered Urban Road Excavation Coordination System
-        </p>
-        <p className="text-[11px] text-slate-400">
-          City of Pune • MIT School of Computing PBL Project (SY904)
-        </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-xl">
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6">
+      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-xl">
+        <div className="bg-white border border-[#DADCE0] rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
           {error && (
-            <div className="p-3.5 bg-rose-950/50 border border-rose-800 rounded-lg text-xs text-rose-300 flex items-center space-x-2">
-              <AlertCircle className="w-4 h-4 text-rose-400 flex-shrink-0" />
+            <div className="p-3.5 bg-[#FCE8E6] border border-[#F28B82] rounded-2xl text-xs text-[#EA4335] flex items-center space-x-2">
+              <AlertCircle className="w-4 h-4 text-[#EA4335] flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
-          {/* Quick 1-Click Demo Login Personas */}
+          {/* Quick 1-Click Demo Login Personas matching Roomie card treatments */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-              <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
-                <Sparkles className="w-3.5 h-3.5 mr-1.5 text-amber-400" />
-                One-Click Demo Login
+            <div className="flex items-center justify-between pb-2 border-b border-[#DADCE0]">
+              <span className="text-xs font-bold text-[#202124] uppercase tracking-wider flex items-center">
+                <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[#FBBC04]" />
+                One-Click Demo Access
               </span>
-              <span className="text-[10px] text-slate-400">Instant Access</span>
+              <span className="text-[11px] font-bold text-[#1A73E8] bg-[#E8F0FE] px-2.5 py-0.5 rounded-full">
+                Instant Sign-In
+              </span>
             </div>
+
+            <p className="text-xs text-[#5F6368]">
+              Select any stakeholder role to immediately test real municipal workflows:
+            </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {demoUsers.map((du) => (
@@ -104,20 +131,20 @@ export const Login: React.FC = () => {
                   key={du.id}
                   onClick={() => handleDemoSelect(du)}
                   disabled={loading}
-                  className="flex items-start p-3 text-left rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 hover:border-blue-500 transition-all group"
+                  className="flex items-start p-3 text-left rounded-2xl bg-white hover:bg-[#F8F9FA] border border-[#DADCE0] hover:border-[#1A73E8] hover:shadow-xs transition-all group cursor-pointer"
                 >
                   <span
-                    className="w-2.5 h-2.5 rounded-full mt-1 mr-2.5 flex-shrink-0"
-                    style={{ backgroundColor: du.department_color || '#2563EB' }}
+                    className="w-2.5 h-2.5 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                    style={{ backgroundColor: du.department_color || '#1A73E8' }}
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-bold text-white group-hover:text-blue-300 truncate">
+                    <p className="text-xs font-bold text-[#202124] group-hover:text-[#1A73E8] truncate">
                       {du.name.split('(')[0]}
                     </p>
-                    <p className="text-[11px] text-slate-400 truncate mt-0.5">
+                    <p className="text-[11px] text-[#5F6368] truncate mt-0.5">
                       {du.department_name}
                     </p>
-                    <span className="inline-block mt-1 px-1.5 py-0.2 text-[9px] font-bold rounded bg-slate-900 text-slate-300 uppercase">
+                    <span className="inline-block mt-1 px-2 py-0.5 text-[9px] font-bold rounded-full bg-[#E8F0FE] text-[#1A73E8] uppercase">
                       {du.role}
                     </span>
                   </div>
@@ -128,44 +155,44 @@ export const Login: React.FC = () => {
 
           {/* Divider */}
           <div className="relative flex items-center justify-center">
-            <div className="border-t border-slate-800 w-full" />
-            <span className="bg-slate-900 px-3 text-[10px] text-slate-500 uppercase tracking-widest font-semibold absolute">
+            <div className="border-t border-[#DADCE0] w-full" />
+            <span className="bg-white px-3 text-[10px] text-[#5F6368] uppercase tracking-widest font-bold absolute">
               Or Manual Sign In
             </span>
           </div>
 
-          {/* Standard Form */}
+          {/* Standard Form matching Roomie input style */}
           <form onSubmit={handleManualLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-bold text-[#202124] mb-1.5">
                 Official Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-2.5 w-4 h-4 text-slate-500" />
+                <Mail className="absolute left-3.5 top-3 w-4 h-4 text-[#5F6368]" />
                 <input
                   type="email"
                   required
-                  placeholder="admin@infrasync.gov.in"
+                  placeholder="admin@punecorp.gov.in"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 pr-3.5 py-2.5 text-xs bg-white border border-[#DADCE0] rounded-2xl text-[#202124] focus:outline-none focus:ring-2 focus:ring-[#1A73E8]/20 focus:border-[#1A73E8] transition-all"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-bold text-[#202124] mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-2.5 w-4 h-4 text-slate-500" />
+                <Lock className="absolute left-3.5 top-3 w-4 h-4 text-[#5F6368]" />
                 <input
                   type="password"
                   required
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 pr-3.5 py-2.5 text-xs bg-white border border-[#DADCE0] rounded-2xl text-[#202124] focus:outline-none focus:ring-2 focus:ring-[#1A73E8]/20 focus:border-[#1A73E8] transition-all"
                 />
               </div>
             </div>
@@ -173,12 +200,27 @@ export const Login: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 text-xs font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-all shadow-md shadow-blue-600/30 flex items-center justify-center space-x-1"
+              className="w-full py-3 text-xs font-bold text-white bg-[#1A73E8] hover:bg-[#1557B0] rounded-2xl disabled:opacity-50 transition-all shadow-xs flex items-center justify-center space-x-1 cursor-pointer"
             >
-              <span>{loading ? 'Authenticating...' : 'Sign In to Infrasync'}</span>
+              <span>{loading ? 'Authenticating...' : 'Sign In to Portal'}</span>
               <ArrowRight className="w-3.5 h-3.5 ml-1" />
             </button>
           </form>
+
+          {/* Back to Home Link */}
+          <div className="pt-2 text-center border-t border-[#DADCE0]">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5F6368] hover:text-[#1A73E8] transition-colors"
+            >
+              <Home className="w-3.5 h-3.5" />
+              <span>Back to Public Homepage</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-6 text-center text-[11px] text-[#5F6368]">
+          MIT School of Computing • Department of CSE • Project SY904
         </div>
       </div>
     </div>
