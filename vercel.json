@@ -8,6 +8,7 @@
     "api": {
       "root": "api",
       "framework": "fastapi",
+      "entrypoint": "main.py",
       "bindings": [
         {
           "type": "service",
@@ -19,11 +20,13 @@
     },
     "backend": {
       "root": "backend",
-      "framework": "fastapi"
+      "framework": "fastapi",
+      "entrypoint": "main.py"
     },
     "app": {
       "root": ".",
       "framework": "fastapi",
+      "entrypoint": "main.py",
       "bindings": [
         {
           "type": "service",
