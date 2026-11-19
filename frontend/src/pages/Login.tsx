@@ -73,16 +73,8 @@ export const Login: React.FC = () => {
             I
           </div>
           <div className="flex flex-col text-left">
-            <div className="font-black text-2xl tracking-tight leading-none">
-              <span className="text-[#1A73E8]">I</span>
-              <span className="text-[#EA4335]">n</span>
-              <span className="text-[#FBBC04]">f</span>
-              <span className="text-[#1A73E8]">r</span>
-              <span className="text-[#34A853]">a</span>
-              <span className="text-[#EA4335]">s</span>
-              <span className="text-[#1A73E8]">y</span>
-              <span className="text-[#34A853]">n</span>
-              <span className="text-[#FBBC04]">c</span>
+            <div className="font-black text-2xl tracking-tight leading-none text-[#123B70]">
+              Infrasync
             </div>
             <span className="text-[11px] font-bold text-[#5F6368] tracking-wider uppercase mt-0.5">
               Pune Municipal GIS Portal

@@ -14,15 +14,7 @@ export const RoomieFooter: React.FC = () => {
                 I
               </div>
               <div className="font-black text-base sm:text-lg tracking-tight">
-                <span className="text-[#1A73E8]">I</span>
-                <span className="text-[#EA4335]">n</span>
-                <span className="text-[#FBBC04]">f</span>
-                <span className="text-[#1A73E8]">r</span>
-                <span className="text-[#34A853]">a</span>
-                <span className="text-[#EA4335]">s</span>
-                <span className="text-[#1A73E8]">y</span>
-                <span className="text-[#34A853]">n</span>
-                <span className="text-[#FBBC04]">c</span>
+                <span className="text-[#123B70]">Infrasync</span>
                 <span className="text-[#1A73E8] text-xs font-bold ml-1.5">Pune GIS</span>
               </div>
             </div>

@@ -36,16 +36,8 @@ export const Home: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5 text-[#1A73E8]" />
             <span className="text-[#202124]">
               Welcome to{' '}
-              <span className="font-black text-sm tracking-normal capitalize inline-block">
-                <span className="text-[#1A73E8]">I</span>
-                <span className="text-[#EA4335]">n</span>
-                <span className="text-[#FBBC04]">f</span>
-                <span className="text-[#1A73E8]">r</span>
-                <span className="text-[#34A853]">a</span>
-                <span className="text-[#EA4335]">s</span>
-                <span className="text-[#1A73E8]">y</span>
-                <span className="text-[#34A853]">n</span>
-                <span className="text-[#FBBC04]">c</span>
+              <span className="font-black text-sm tracking-normal capitalize inline-block text-[#123B70]">
+                Infrasync
               </span>
             </span>
           </div>

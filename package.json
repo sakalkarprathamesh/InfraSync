@@ -1,0 +1,11 @@
+{
+  "name": "infrasync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Infrasync — AI-Powered Urban Road Excavation Coordination System",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "frontend": "npm --prefix frontend run dev",
+    "backend": "python3 backend/run.py"
+  }
+}

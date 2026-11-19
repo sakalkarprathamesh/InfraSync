@@ -9,7 +9,10 @@ class Settings:
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
     
     # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./infrasync.db")
+    DATABASE_URL: str = os.getenv(
+        "DATABASE_URL",
+        "sqlite:////tmp/infrasync.db" if os.getenv("VERCEL") else "sqlite:///./infrasync.db"
+    )
     
     # Conflict Detection Parameters
     PROXIMITY_DISTANCE_METERS: float = 150.0  # Within 150m is treated as spatial proximity

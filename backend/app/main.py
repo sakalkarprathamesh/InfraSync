@@ -11,17 +11,24 @@ from .routers import (
     notifications, analytics, resources
 )
 
-# Initialize database schema
-Base.metadata.create_all(bind=engine)
+# Initialize database schema & seed demonstration data
+_db_initialized = False
+
+def ensure_seeded():
+    global _db_initialized
+    if not _db_initialized:
+        Base.metadata.create_all(bind=engine)
+        db = SessionLocal()
+        try:
+            seed_database(db)
+        finally:
+            db.close()
+        _db_initialized = True
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup: Seed initial demonstration data
-    db = SessionLocal()
-    try:
-        seed_database(db)
-    finally:
-        db.close()
+    ensure_seeded()
     yield
     # Shutdown logic if any
 

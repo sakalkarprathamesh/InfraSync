@@ -18,3 +18,5 @@ infrasync.db
 .env
 .pytest_cache/
 .DS_Store
+.vercel/
+
